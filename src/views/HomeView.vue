@@ -3,6 +3,7 @@
         <div>홈</div>
     </div>
 </template>
+
 <style scoped>
 /* 작은 모바일 (최대 576px) */
 @media (max-width: 576px) {
