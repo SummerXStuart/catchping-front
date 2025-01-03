@@ -1,5 +1,15 @@
-# Vue 3 + TypeScript + Vite
+# 캐치핑 게임 프로젝트
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+이 프로젝트는 정답에 해당하는 이미지를 보고, 사용자가 맞추는 게임 웹앱을 목적으로 만들었습니다. 해당 프로젝트의 UI 구성은 아래와 같습니다.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+대기실 페이지
+게임 페이지
+게임 완료 페이지
+게임 완료 랭킹 제공 페이지
+정답 성공 팝업
+정답 실패 팝업 - 재시도
+정답 실패 팝업 - 홈화면으로
+
+게임 페이지의 이미지는 백엔드에서 받아서 이미질ㄹ 보여주며 첫 번째, 두 번째, 세 번째 힌트가 지나갈 때마다 하나씩 이미지를 캐로셀 형태로 확인해볼 수 있습니다. 해당 힌트 시점이 도래 하지 않았을 때에는 해당 슬라이드 버튼을 사용하지 못하도록 구현하였습니다. 정답을 맞출 기회는 3번 제공되며, 정답을 3번 이상 오류 하였을 때에는 다른 힌트로 넘어가게 됩니다. 최종까지 정답을 못맞혔을 때에는 정답 실패 팝업과 함께 홈화면으로 돌아가며, 정답을 맞췄을 때에는 게임 완료 페이지로 이동한 후, 랭킹보기 버튼을 통해 사용자가 자신의 랭킹을 확인할 수도 있습니다.
+
+고려 필요한 사항 : 페이지 진입 시 사용자가 이용하지 않았을 떄 홈화면으로 전환 여부, 가능하다면 페이지 웨잇 정도
