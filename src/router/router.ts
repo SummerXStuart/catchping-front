@@ -3,6 +3,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import MainLayout from "../components/layout/MainLayout.vue";
 import EmptyLayout from "../components/layout/EmptyLayout.vue";
 import HomeView from "../views/HomeView.vue";
+import QuizPlay from "../views/QuizPlay.vue";
 import WaitingRoom from "../views/WaitingRoom.vue";
 
 const routes = [
@@ -14,6 +15,11 @@ const routes = [
         path: "/home",
         name: "HomeView",
         component: HomeView,
+      },
+      {
+        path: "/quiz-play",
+        name: "QuizPlay",
+        component: QuizPlay,
       },
     ],
   },

@@ -1,12 +1,23 @@
 <template>
     <div class="waiting-room-container">
         <div class="main-title">캐치핑</div>
-        <div class="entry-button">싱글 플레이</div>
+        <div class="entry-button" @click="clickSinglePlayButton">싱글 플레이</div>
         <div class="entry-button">멀티 플레이</div>
     </div>
     <div class="bg"></div>
 </template>
 <script setup lang="ts">
+import router from '../router/router';
+
+const callAPI = (url:string)=>{
+    // api 호출하는 버튼
+    // 클릭 하면 해당 api 를 호출해야한다.
+    // url 은 해당 api 호출에 관한 값을 전달 받아 호출할 때 이용
+}
+const clickSinglePlayButton = ()=>{
+    router.push('/quiz-play')
+
+}
 </script>
 <style scope lang="scss">
 .bg{
