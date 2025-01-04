@@ -22,13 +22,18 @@
         <img src="../../public/imgs/enter-icon.png" alt="">
       </div>
       <!-- 정답 및 오답 팝업 -->
-      <div></div>
+      <!-- 정답 맞힐 기회는 3번 -->
+      <popup-answer
+      :title="answerLabels.title"
+      :left-label="answerLabels.left"
+      :right-label="answerLabels.right"/>
     </div>
     <div class="bg"></div>
 
 </template>
 <script setup lang="ts">
   import {ref} from 'vue';
+  import PopupAnswer from '../components/PopupAnswer.vue'
   
   const slides = [
     "https://picsum.photos/200/300?grayscale",
@@ -36,6 +41,11 @@
     "https://picsum.photos/200/300",
   ]
   const currentSlide = ref(0)
+  const answerLabels = ref({
+    title:'땡! 오답입니다',
+    left:'재시도 (1/3)',
+    right:'다음 힌트'
+  })
   
   const nextSlide = () => {
     currentSlide.value =
