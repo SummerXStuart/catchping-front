@@ -34,6 +34,7 @@
 <script setup lang="ts">
   import {ref} from 'vue';
   import PopupAnswer from '../components/PopupAnswer.vue'
+  import answerLabels from '../constants/quizs.ts'
   
   const slides = [
     "https://picsum.photos/200/300?grayscale",
@@ -46,7 +47,12 @@
     left:'재시도 (1/3)',
     right:'다음 힌트'
   })
-  
+  const isOpenAnswerPopup=ref(false)
+  const countPopup = ref({
+    hintNum:0,
+    retryCount:0
+  })
+  const rightAnswer = ref('테스트')
   const nextSlide = () => {
     currentSlide.value =
         (currentSlide.value + 1) % slides.length;
@@ -55,6 +61,25 @@
     currentSlide.value =
         (currentSlide.value - 1 + slides.length) %
         slides.length;
+  }
+
+  const sendAnswer=(userAnswer:string)=>{
+    // 정답과 답변을 비교하기 위한 함수
+    // 해당 답변이 일치하면 다음 문제 / 해당 답변 오답이면 계속 힌트 1,2,3 진행 및 팝업
+
+    if(rightAnswer.value==userAnswer){
+
+    }else{
+      countPopup.value.hintNum++
+      countPopup.value.retryCount++
+    }
+  }
+
+
+  const pluseCount = ()=>{
+    // 팝업 증가시키고
+    // 힌트랑 리트라이 카운트가 3이상이 넘지 못하게 만약에 넘으면 완료 / 실패 팝업이 떠야함
+    // 근데 여기서 의존해서 뜨면 안됨
   }
 
 </script>
