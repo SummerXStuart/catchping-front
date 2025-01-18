@@ -8,6 +8,15 @@
 </template>
 <script setup lang="ts">
 import router from '../router/router';
+import { allGameStore } from '../store/allGameStore.ts';
+import {setId} from '../store/setId.ts'
+import axios from 'axios'
+import { v4 as uuidv4 } from 'uuid';
+
+const gameStore = allGameStore();
+const setUid = setId();
+const uid = uuidv4(); // 또는 직접 생성
+
 
 const callAPI = (url:string)=>{
     // api 호출하는 버튼
@@ -15,7 +24,27 @@ const callAPI = (url:string)=>{
     // url 은 해당 api 호출에 관한 값을 전달 받아 호출할 때 이용
 }
 const clickSinglePlayButton = ()=>{
+    console.log(uid,'uid!!!!!!!!!')
+    axios.post('http://localhost:5001/catchping_backend/init_single_mode',{
+    uid: uid, // 전달하고 싶은 uid 값
+    estimation: "single_mode"
+  }).then((req)=>{
+        console.log(req,'req!!!!!!!!!')
+        setUid.$patch({
+            userId:uid
+        })
+        gameStore.$patch({
+        quiz:req.data.hint_b64_imgs,
+        current_target_index:req.data.current_target_index,
+        current_hint_img_index:req.data.current_hint_img_index
+    })
+    console.log(gameStore)
     router.push('/quiz-play')
+
+      })
+      .catch(()=>{
+        console.log('실패함')
+      })
 
 }
 </script>
