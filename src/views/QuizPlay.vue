@@ -76,7 +76,8 @@ console.log({
       end: req.data.end,
       result:req.data.result,
       trial:req.data.trial,
-      target:req.data.target?req.data.target:''
+      target:req.data.target?req.data.target:'',
+      score:req.data.score
   })
   currentSlide.value=gameStore.current_hint_img_index;
   slides.value = gameStore.quiz[gameStore.current_target_index]
@@ -111,7 +112,11 @@ const whichPopup = (result:boolean, trial:number,end:boolean,target:any)=>{
   }
   popupForm.value.open = true;
   // 모든 로직 끝나고 end 이면 /end 페이지로 이동
-  if(end) router.push('/end')
+  if(end) {
+    setTimeout(()=>{
+      router.push('/end')
+    },1000)
+  }
 }
 
 onMounted(()=>{

@@ -22,6 +22,11 @@ const routes = [
         name: "QuizPlay",
         component: QuizPlay,
       },
+      {
+        path: "/end",
+        name: "EndPage",
+        component: EndPage,
+      },
     ],
   },
   {
@@ -32,11 +37,6 @@ const routes = [
         path: "/waiting-room",
         name: "WaitingRoom",
         component: WaitingRoom,
-      },
-      {
-        path: "/end",
-        name: "EndPage",
-        component: EndPage,
       },
     ],
   },

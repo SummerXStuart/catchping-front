@@ -2,20 +2,25 @@
     <div class="waiting-room-container">
         <div class="main-title">캐치핑</div>
         <div class="entry-button" @click="clickSinglePlayButton">싱글 플레이</div>
-        <div class="entry-button">멀티 플레이</div>
+        <div class="entry-button" @click="showPreparing">멀티 플레이</div>
     </div>
+    <common-popup v-if="popupForm.open" :title="popupForm.title" :btn1="popupForm.btn1" @click="popupForm.open=false"/>
     <div class="bg"></div>
 </template>
 <script setup lang="ts">
 import router from '../router/router';
+import {ref} from 'vue';
 import { allGameStore } from '../store/allGameStore.ts';
 import {setId} from '../store/setId.ts'
 import axios from 'axios'
 import { v4 as uuidv4 } from 'uuid';
+import CommonPopup from '../components/CommonPopup.vue';
+import {preparingLabel} from '../label/popupLabel.ts'
 
 const gameStore = allGameStore();
 const setUid = setId();
 const uid = uuidv4(); // 또는 직접 생성
+const popupForm:any = ref({open:false,title:'',btn1:'',btn2:''})
 
 
 const callAPI = (url:string)=>{
@@ -46,6 +51,14 @@ const clickSinglePlayButton = ()=>{
         console.log('실패함')
       })
 
+}
+
+const showPreparing = ()=>{
+    popupForm.value = {
+        open:true,
+        title:'준비중입니다!<br/>다음에 만나요!',
+        btn1:'확인'
+    }    
 }
 </script>
 <style scope lang="scss">

@@ -30,6 +30,7 @@ export const wrongEndAnswer = ref({
     btn1:'확인'
 })
 
+
 export const wrongNextHintAnswer = ref({
     open:true,
     title:'오답입니다',
