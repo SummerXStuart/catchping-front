@@ -36,6 +36,8 @@ const emits = defineEmits(['clickBtn1','clickBtn2']);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'GmarketSansMedium';
+
   .box{
     .label{
       font-size: 1.5rem;
