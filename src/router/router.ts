@@ -3,6 +3,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import MainLayout from "../components/layout/MainLayout.vue";
 import EmptyLayout from "../components/layout/EmptyLayout.vue";
 import HomeView from "../views/HomeView.vue";
+import EndPage from "../views/EndPage.vue";
 import QuizPlay from "../views/QuizPlay.vue";
 import WaitingRoom from "../views/WaitingRoom.vue";
 
@@ -31,6 +32,11 @@ const routes = [
         path: "/waiting-room",
         name: "WaitingRoom",
         component: WaitingRoom,
+      },
+      {
+        path: "/end",
+        name: "EndPage",
+        component: EndPage,
       },
     ],
   },

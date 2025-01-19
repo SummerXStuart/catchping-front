@@ -8,7 +8,7 @@ export const allGameStore = defineStore('allGameStore', {
     end: false, //문제 끝났는지
     result:true, //문제 결과(맞췄나 틀렸나)
     score:3, // 점수
-    target:"가수", //대답한 말
+    target:null, //대답한 말
     trial:0 //시도 횟 수
   }
   },
