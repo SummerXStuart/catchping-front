@@ -8,12 +8,21 @@
     <div class="bg"></div>
 </template>
 <script setup lang="ts">
+import {onMounted, onUnmounted } from 'vue';
 import { allGameStore } from '../store/allGameStore.ts';
 import router from '../router/router.ts';
 
 const gameStore = allGameStore();
+const audio = new Audio('/sound/catchping-end.mp3')
 
+onMounted(()=>{
+    audio.play()
+    audio.loop = true;
+})
 
+onUnmounted(()=>{
+    audio.pause()
+})
 </script>
 <style scope lang="scss">
 .end-container{

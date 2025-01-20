@@ -28,7 +28,7 @@
 
 </template>
 <script setup lang="ts">
-import {onMounted, ref} from 'vue';
+import {onMounted, ref, onUnmounted } from 'vue';
 import { allGameStore } from '../store/allGameStore.ts';
 import {setId} from '../store/setId.ts'
 import axios from 'axios';
@@ -36,7 +36,7 @@ import CommonPopup from '../components/CommonPopup.vue';
 import {rightAnswer,wrongAnswer,wrongNextHintAnswer,wrongEndAnswer,rightEndAnswer,wrongNextQuiz} from '../label/popupLabel.ts'
 import router from '../router/router.ts';
 
-
+const audio = new Audio('/sound/catchping-waiting-room.mp3')
 const gameStore = allGameStore();
 const setUid = setId();
 const userAnswer =ref('')  
@@ -118,6 +118,15 @@ const whichPopup = (result:boolean, trial:number,end:boolean,target:any)=>{
     },1000)
   }
 }
+
+onMounted(()=>{
+    audio.play()
+    audio.loop = true;
+})
+
+onUnmounted(()=>{
+    audio.pause()
+})
 
 onMounted(()=>{
   slides.value = gameStore.quiz[gameStore.current_target_index]
