@@ -44,7 +44,7 @@ const clickSinglePlayButton = ()=>{
         current_hint_img_index:req.data.current_hint_img_index
     })
     console.log(gameStore)
-    router.push('/quiz-play')
+    router.push('/catchping/quiz-play')
 
       })
       .catch(()=>{

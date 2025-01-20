@@ -18,12 +18,12 @@ const routes = [
         component: HomeView,
       },
       {
-        path: "/quiz-play",
+        path: "/catchping/quiz-play",
         name: "QuizPlay",
         component: QuizPlay,
       },
       {
-        path: "/end",
+        path: "/catchping/end",
         name: "EndPage",
         component: EndPage,
       },
@@ -34,7 +34,7 @@ const routes = [
     component: EmptyLayout,
     children: [
       {
-        path: "/waiting-room",
+        path: "/catchping",
         name: "WaitingRoom",
         component: WaitingRoom,
       },

@@ -10,11 +10,12 @@ import router from '../../router/router';
 const audio = new Audio('/sound/catchping-waiting-room.mp3')
 
 const clickGoHome=()=>{    
-    router.push('/waiting-room');    
+    router.push('/catchping');    
 }
 
 onMounted(()=>{
     audio.play()
+    audio.loop = true;
 })
 
 onUnmounted(()=>{

@@ -114,7 +114,7 @@ const whichPopup = (result:boolean, trial:number,end:boolean,target:any)=>{
   // 모든 로직 끝나고 end 이면 /end 페이지로 이동
   if(end) {
     setTimeout(()=>{
-      router.push('/end')
+      router.push('/catchping/end')
     },1000)
   }
 }

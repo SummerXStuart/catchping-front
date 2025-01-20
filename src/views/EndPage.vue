@@ -1,9 +1,9 @@
 <template>
     <div class="end-container">
         <h1 class="main-title">축하합니다!</h1>
-        <h2 class="sub-title">모든 문제를 풀이하셨어요</h2>
+        <h2 class="sub-title">모든 문제가 끝났습니다</h2>
         <div class="des">당신의 스코어는 <span class="score" v-html="gameStore.score"/>점 입니다.</div>
-        <div class="home-button" @click="router.push('/waiting-room')">홈으로 이동</div>
+        <div class="home-button" @click="router.push('/catchping')">홈으로 이동</div>
     </div>
     <div class="bg"></div>
 </template>
