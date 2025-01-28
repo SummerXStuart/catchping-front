@@ -2,9 +2,9 @@
     <div class="popup-container">
      <div class="box">
         <div class="label" v-html="props.title"></div>
-        <div class="btns">
-            <div v-html="props.btn1" @click="emits('clickBtn1');"></div>
-            <div v-if="props.btn2" v-html="props.btn2" @click="emits('clickBtn2');"></div>
+        <div class="btns" :class="props.btn2?'is-btn2':''">
+            <div :class="props.btn2?'is-btn2':''" v-html="props.btn1" @click="emits('clickBtn1');" ></div>
+            <div :class="props.btn2?'is-btn2':''" v-if="props.btn2" v-html="props.btn2" @click="emits('clickBtn2');"></div>
         </div>
    </div>    
 </div>
@@ -49,6 +49,9 @@ const emits = defineEmits(['clickBtn1','clickBtn2']);
   padding: 37px 60px;
   position: relative;
   border-radius: 24px;  
+  .is-btn2{
+    gap: 0.5rem;
+  }
   .btns {
   margin-top: 32px;
   display: flex;
@@ -65,6 +68,10 @@ const emits = defineEmits(['clickBtn1','clickBtn2']);
     justify-content: center;
     background-color: #ee7070;
     color: #fff;
+    &.is-btn2{
+    font-size: 1rem;
+    border-radius: 14px;
+  }
   }
 }}
 }

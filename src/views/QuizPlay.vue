@@ -25,7 +25,7 @@
       <div @click="clickGiveUp">문제 포기</div>
     </div>
     <!-- 정답 및 오답 팝업 -->
-    <common-popup v-if="popupForm.open" :title="popupForm.title" :btn1="popupForm.btn1" @click-btn1="popupForm.open=false"  @click-btn2="anotherHint"/>
+    <common-popup v-if="popupForm.open" :title="popupForm.title" :btn1="popupForm.btn1" :btn2="popupForm.btn2" @click-btn1="popupForm.open=false" @click-btn2="anotherHint"/>
   </div>
   <div class="bg"></div>
 
@@ -110,10 +110,29 @@ const clickGiveUp =()=>{
   userAnswer.value = '';  
   currentSlide.value=gameStore.current_hint_img_index;
   slides.value = gameStore.quiz[gameStore.current_target_index]
-  if(gameStore.current_target_index==2){
-    setTimeout(()=>{
-      router.push('/catchping/end')
-    },1000)  }
+  if(gameStore.end){
+    router.push('/catchping/end')
+    }
+  })
+}
+
+const anotherHint  =()=>{
+  axios.post('http://localhost:5001/catchping_backend/next_hint',{
+    uid: setUid.userId,
+  }).then((req)=>{
+    gameStore.$patch({
+      current_target_index:req.data.current_target_index,
+      current_hint_img_index:req.data.current_hint_img_index,
+      end: req.data.end,
+      result:req.data.result,
+      trial:req.data.trial,
+      target:req.data.target?req.data.target:'',
+      score:req.data.score
+  })
+  userAnswer.value = '';  
+  currentSlide.value=gameStore.current_hint_img_index;
+  slides.value = gameStore.quiz[gameStore.current_target_index]
+  popupForm.value.open = false;
   })
 }
 
@@ -137,6 +156,11 @@ const whichPopup = (result:boolean, trial:number,end:boolean,target:any)=>{
       if(trial){
         popupForm.value = wrongNextHintAnswer.value
         popupForm.value.btn1 = '재시도('+trial+'/3)'
+        if(gameStore.current_hint_img_index==2) {
+          popupForm.value.btn2='';
+        }else{
+          popupForm.value.btn2='다음 힌트';
+        }
       }else{        
         popupForm.value = wrongAnswer.value;
         target ? popupForm.value.title = '정답 : ' + target :popupForm.value.title = '오답입니다ㅠㅠ  <br/>다음 힌트로 넘어갑니다'

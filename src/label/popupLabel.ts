@@ -35,7 +35,7 @@ export const wrongNextHintAnswer = ref({
     open:true,
     title:'오답입니다',
     btn1:'재시도(2/3)',
-    btn2:'다음 힌트 보기'
+    btn2:'다음 힌트'
 })
 
 export const giveup = ref({
