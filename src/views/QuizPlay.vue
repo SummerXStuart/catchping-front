@@ -86,7 +86,7 @@ console.log({
       score:req.data.score
   })
   userAnswer.value = '';  
-  currentSlide.value=0;
+  currentSlide.value=gameStore.current_hint_img_index;
   slides.value = gameStore.quiz[gameStore.current_target_index]
   })
 }
