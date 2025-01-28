@@ -18,8 +18,11 @@
     <button class="next" @click="nextSlide">›</button>
   </div>      <!-- 정답 입력 칸 / 서밋 -->
     <div class="answer-enter-box">
-      <input type="text" placeholder="정답을 입력해주세요" v-model="userAnswer">
+      <input type="text" placeholder="정답을 입력해주세요" v-model="userAnswer"  @keyup.enter="sendUserAnswer($event)">
       <img src="../../public/imgs/enter-icon.png" alt="" @click="sendUserAnswer">
+    </div>
+    <div class="btn-give-up">
+      <div @click="clickGiveUp">문제 포기</div>
     </div>
     <!-- 정답 및 오답 팝업 -->
     <common-popup v-if="popupForm.open" :title="popupForm.title" :btn1="popupForm.btn1" @click-btn1="popupForm.open=false"  @click-btn2="anotherHint"/>
@@ -33,7 +36,7 @@ import { allGameStore } from '../store/allGameStore.ts';
 import {setId} from '../store/setId.ts'
 import axios from 'axios';
 import CommonPopup from '../components/CommonPopup.vue';
-import {rightAnswer,wrongAnswer,wrongNextHintAnswer,wrongEndAnswer,rightEndAnswer,wrongNextQuiz} from '../label/popupLabel.ts'
+import {rightAnswer,wrongAnswer,wrongNextHintAnswer,wrongEndAnswer,rightEndAnswer,giveup,wrongNextQuiz} from '../label/popupLabel.ts'
 import router from '../router/router.ts';
 
 const audio = new Audio('/sound/catchping-waiting-room.mp3')
@@ -58,15 +61,18 @@ const prevSlide = () => {
   if(currentSlide.value===0)return
   currentSlide.value--
 }
-const sendUserAnswer = ()=>{
+const sendUserAnswer = (e?:any)=>{
 console.log({
     uid: setUid.userId,
     estimation:userAnswer.value
   });
 
+  let estimationSendText;
+  userAnswer.value ? estimationSendText = userAnswer.value:estimationSendText = e;
+
   axios.post('http://localhost:5001/catchping_backend/single_mode_quiz',{
     uid: setUid.userId,
-    estimation:userAnswer.value
+    estimation:estimationSendText
   }).then((req)=>{
     console.log(req);
     whichPopup(req.data.result,req.data.trial,req.data.end,req.data.target)
@@ -80,8 +86,34 @@ console.log({
       score:req.data.score
   })
   userAnswer.value = '';  
+  currentSlide.value=0;
+  slides.value = gameStore.quiz[gameStore.current_target_index]
+  })
+}
+
+const clickGiveUp =()=>{
+  axios.post('http://localhost:5001/catchping_backend/giveup',{
+    uid: setUid.userId,
+  }).then((req)=>{
+    console.log(req);
+    popupForm.value = giveup.value;
+    popupForm.value.open = true;
+    gameStore.$patch({
+      current_target_index:req.data.current_target_index,
+      current_hint_img_index:req.data.current_hint_img_index,
+      end: req.data.end,
+      result:req.data.result,
+      trial:req.data.trial,
+      target:req.data.target?req.data.target:'',
+      score:req.data.score
+  })
+  userAnswer.value = '';  
   currentSlide.value=gameStore.current_hint_img_index;
   slides.value = gameStore.quiz[gameStore.current_target_index]
+  if(gameStore.current_target_index==2){
+    setTimeout(()=>{
+      router.push('/catchping/end')
+    },1000)  }
   })
 }
 
@@ -224,5 +256,17 @@ button:focus {
   z-index: -1;
   opacity: 0.03;
 }
-
+.btn-give-up{
+  font-family: "Paperlogy-8ExtraBold";
+  width: 20%;
+  background: #ffb9b9;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  color: #653b3b;
+  position: absolute;
+  bottom: 2rem;
+  right: 1rem;
+}
 </style>

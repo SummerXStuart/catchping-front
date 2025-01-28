@@ -37,3 +37,9 @@ export const wrongNextHintAnswer = ref({
     btn1:'재시도(2/3)',
     btn2:'다음 힌트 보기'
 })
+
+export const giveup = ref({
+    open:true,
+    title:'다음 차시로 이동합니다',
+    btn1:'확인',
+})
