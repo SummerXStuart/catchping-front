@@ -5,6 +5,7 @@ import EmptyLayout from "../components/layout/EmptyLayout.vue";
 import HomeView from "../views/HomeView.vue";
 import EndPage from "../views/EndPage.vue";
 import QuizPlay from "../views/QuizPlay.vue";
+import RulePage from "../views/RulePage.vue";
 import WaitingRoom from "../views/WaitingRoom.vue";
 
 const routes = [
@@ -26,6 +27,11 @@ const routes = [
         path: "/catchping/end",
         name: "EndPage",
         component: EndPage,
+      },
+      {
+        path: "/catchping/rules",
+        name: "RulePage",
+        component: RulePage,
       },
     ],
   },
