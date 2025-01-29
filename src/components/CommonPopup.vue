@@ -71,6 +71,11 @@ const emits = defineEmits(['clickBtn1','clickBtn2']);
     &.is-btn2{
     font-size: 1rem;
     border-radius: 14px;
+    &:nth-child(2){
+      background-color: #c3c3c3;
+      color: #f46969;
+    }
+   
   }
   }
 }}
