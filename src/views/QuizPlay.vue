@@ -151,6 +151,7 @@ const whichPopup = (result:boolean, trial:number,end:boolean,target:any)=>{
     // 답이 틀렸을 때
     if(end){
       popupForm.value = wrongEndAnswer.value 
+      popupForm.value.title = `오답입니다 <br/> 정답 : ` + target
     }else{
       // trial 1,2 / 0 이면 시도 끝
       if(trial){
@@ -163,17 +164,19 @@ const whichPopup = (result:boolean, trial:number,end:boolean,target:any)=>{
         }
       }else{        
         popupForm.value = wrongAnswer.value;
-        target ? popupForm.value.title = '정답 : ' + target :popupForm.value.title = '오답입니다ㅠㅠ  <br/>다음 힌트로 넘어갑니다'
+        target ? popupForm.value.title = `오답입니다 <br/> 정답 : ` + target :popupForm.value.title = '오답입니다ㅠㅠ  <br/>다음 힌트로 넘어갑니다'
       }
     }
   }
-  popupForm.value.open = true;
   // 모든 로직 끝나고 end 이면 /end 페이지로 이동
   if(end) {
     setTimeout(()=>{
       router.push('/catchping/end')
-    },1000)
+    },2000)
+    popupForm.value.btn1='';
   }
+  popupForm.value.open = true;
+
 }
 
 onMounted(()=>{

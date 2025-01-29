@@ -2,8 +2,8 @@
     <div class="popup-container">
      <div class="box">
         <div class="label" v-html="props.title"></div>
-        <div class="btns" :class="props.btn2?'is-btn2':''">
-            <div :class="props.btn2?'is-btn2':''" v-html="props.btn1" @click="emits('clickBtn1');" ></div>
+        <div class="btns" :class="props.btn2?'is-btn2':''" :style="props.btn1?'':'margin:0'">
+            <div :class="props.btn2?'is-btn2':''" v-html="props.btn1" @click="emits('clickBtn1');" :style="props.btn1?'':'opacity:0; height:0;'" ></div>
             <div :class="props.btn2?'is-btn2':''" v-if="props.btn2" v-html="props.btn2" @click="emits('clickBtn2');"></div>
         </div>
    </div>    
@@ -12,7 +12,7 @@
 <script setup lang="ts">
 interface CommonPopup {
   title: string;
-  btn1: string;
+  btn1?: string;
   btn2?: string;
 }
 
@@ -26,7 +26,7 @@ const emits = defineEmits(['clickBtn1','clickBtn2']);
 </script>
 <style scoped lang="scss">
 .popup-container{
-    position: absolute;
+  position: absolute;
   background-color: rgba(0, 0, 0, 0.85);
   mix-blend-mode: normal;
   z-index: 1001;
