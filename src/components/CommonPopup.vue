@@ -31,6 +31,7 @@ const emits = defineEmits(['clickBtn1','clickBtn2']);
   mix-blend-mode: normal;
   z-index: 1001;
   top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   display: flex;
