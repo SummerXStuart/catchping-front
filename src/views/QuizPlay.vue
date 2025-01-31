@@ -36,7 +36,8 @@ import { allGameStore } from '../store/allGameStore.ts';
 import {setId} from '../store/setId.ts'
 import axios from 'axios';
 import CommonPopup from '../components/CommonPopup.vue';
-import {rightAnswer,wrongAnswer,wrongNextHintAnswer,wrongEndAnswer,rightEndAnswer,giveup,wrongNextQuiz} from '../label/popupLabel.ts'
+// import {rightAnswer,wrongAnswer,wrongNextHintAnswer,wrongEndAnswer,rightEndAnswer,giveup,wrongNextQuiz} from '../label/popupLabel.ts'
+import {rightAnswer,wrongAnswer,wrongNextHintAnswer,wrongEndAnswer,rightEndAnswer,giveup} from '../label/popupLabel.ts'
 import router from '../router/router.ts';
 
 const audio = new Audio('/sound/catchping-waiting-room2.mp3')

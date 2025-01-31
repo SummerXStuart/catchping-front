@@ -3,10 +3,14 @@
         <div>홈</div>
     </div>
 </template>
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 
-
+export default defineComponent({
+  // script content
+});
 </script>
+
 <style scoped>
 /* 작은 모바일 (최대 576px) */
 @media (max-width: 576px) {

@@ -15,7 +15,7 @@ import {setId} from '../store/setId.ts'
 import axios from 'axios'
 import { v4 as uuidv4 } from 'uuid';
 import CommonPopup from '../components/CommonPopup.vue';
-import {preparingLabel} from '../label/popupLabel.ts'
+// import {preparingLabel} from '../label/popupLabel.ts'
 
 const gameStore = allGameStore();
 const setUid = setId();
@@ -23,11 +23,11 @@ const uid = uuidv4(); // 또는 직접 생성
 const popupForm:any = ref({open:false,title:'',btn1:'',btn2:''})
 
 
-const callAPI = (url:string)=>{
-    // api 호출하는 버튼
-    // 클릭 하면 해당 api 를 호출해야한다.
-    // url 은 해당 api 호출에 관한 값을 전달 받아 호출할 때 이용
-}
+// const callAPI = (url:string)=>{
+//     // api 호출하는 버튼
+//     // 클릭 하면 해당 api 를 호출해야한다.
+//     // url 은 해당 api 호출에 관한 값을 전달 받아 호출할 때 이용
+// }
 const clickSinglePlayButton = ()=>{
     console.log(uid,'uid!!!!!!!!!')
     axios.post('http://localhost:5001/catchping_backend/init_single_mode',{
