@@ -88,6 +88,7 @@ console.log({
   })
   userAnswer.value = '';  
   currentSlide.value=gameStore.current_hint_img_index;
+  // @ts-ignore
   slides.value = gameStore.quiz[gameStore.current_target_index]
   })
 }
@@ -110,6 +111,7 @@ const clickGiveUp =()=>{
   })
   userAnswer.value = '';  
   currentSlide.value=gameStore.current_hint_img_index;
+    // @ts-ignore
   slides.value = gameStore.quiz[gameStore.current_target_index]
   if(gameStore.end){
     router.push('/catchping/end')
@@ -132,6 +134,7 @@ const anotherHint  =()=>{
   })
   userAnswer.value = '';  
   currentSlide.value=gameStore.current_hint_img_index;
+  // @ts-ignore
   slides.value = gameStore.quiz[gameStore.current_target_index]
   popupForm.value.open = false;
   })
@@ -190,6 +193,7 @@ onUnmounted(()=>{
 })
 
 onMounted(()=>{
+    // @ts-ignore
   slides.value = gameStore.quiz[gameStore.current_target_index]
 })
 
