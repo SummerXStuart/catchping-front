@@ -51,6 +51,8 @@ const slides = ref([
 ])
 const currentSlide = ref(0)
 const popupForm:any = ref({open:false,title:'',btn1:'',btn2:''})
+const apiUrl = import.meta.env.VITE_API_URL;
+
 
 const nextSlide = () => {   
   console.log(currentSlide.value,gameStore.current_target_index);
@@ -71,7 +73,7 @@ console.log({
   let estimationSendText;
   userAnswer.value ? estimationSendText = userAnswer.value:estimationSendText = e;
 
-  axios.post('http://localhost:5001/catchping_backend/single_mode_quiz',{
+  axios.post(`${apiUrl}/catchping_backend/single_mode_quiz`,{
     uid: setUid.userId,
     estimation:estimationSendText
   }).then((req)=>{
@@ -94,7 +96,7 @@ console.log({
 }
 
 const clickGiveUp =()=>{
-  axios.post('http://localhost:5001/catchping_backend/giveup',{
+  axios.post(`${apiUrl}/catchping_backend/giveup`,{
     uid: setUid.userId,
   }).then((req)=>{
     console.log(req);
@@ -120,7 +122,7 @@ const clickGiveUp =()=>{
 }
 
 const anotherHint  =()=>{
-  axios.post('http://localhost:5001/catchping_backend/next_hint',{
+  axios.post(`${apiUrl}/catchping_backend/next_hint`,{
     uid: setUid.userId,
   }).then((req)=>{
     gameStore.$patch({

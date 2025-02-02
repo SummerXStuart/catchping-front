@@ -21,6 +21,7 @@ const gameStore = allGameStore();
 const setUid = setId();
 const uid = uuidv4(); // 또는 직접 생성
 const popupForm:any = ref({open:false,title:'',btn1:'',btn2:''})
+const apiUrl = import.meta.env.VITE_API_URL;
 
 
 // const callAPI = (url:string)=>{
@@ -30,7 +31,7 @@ const popupForm:any = ref({open:false,title:'',btn1:'',btn2:''})
 // }
 const clickSinglePlayButton = ()=>{
     console.log(uid,'uid!!!!!!!!!')
-    axios.post('http://localhost:5001/catchping_backend/init_single_mode',{
+    axios.post(`${apiUrl}/catchping_backend/init_single_mode`,{
     uid: uid, // 전달하고 싶은 uid 값
     estimation: "single_mode"
   }).then((req)=>{
