@@ -45,7 +45,7 @@ const clickSinglePlayButton = ()=>{
         current_hint_img_index:req.data.current_hint_img_index
     })
     console.log(gameStore)
-    router.push('/catchping/rules')
+    router.push('/rules')
 
       })
       .catch(()=>{

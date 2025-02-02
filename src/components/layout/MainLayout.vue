@@ -8,7 +8,7 @@ import router from '../../router/router';
 
 
 const clickGoHome=()=>{    
-    router.push('/catchping');    
+    router.push('/');    
 }
 
 
